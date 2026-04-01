@@ -1,0 +1,161 @@
+error[E0277]: the trait bound `T: Transform<T>` is not satisfied
+  --> src\modules\property.rs:10:16
+   |
+10 |     pub cause: Exception<T>,
+   |                ^^^^^^^^^^^^ the trait `Transform<T>` is not implemented for `T`
+   |
+note: required by a bound in `Exception`
+  --> src\modules\exception.rs:10:25
+   |
+10 | pub struct Exception<T: Transform<T>> {
+   |                         ^^^^^^^^^^^^ required by this bound in `Exception`
+help: consider restricting type parameter `T` with trait `Transform`
+   |
+ 7 | pub struct Property<T: modules::traits::Transform<T>> {
+   |                      +++++++++++++++++++++++++++++++
+
+error[E0277]: the trait bound `T: Transform<T>` is not satisfied
+  --> src\modules\traits.rs:21:23
+   |
+21 |     fn down(&self) -> Exception<T> {
+   |                       ^^^^^^^^^^^^ the trait `Transform<T>` is not implemented for `T`
+   |
+note: required by a bound in `Exception`
+  --> src\modules\exception.rs:10:25
+   |
+10 | pub struct Exception<T: Transform<T>> {
+   |                         ^^^^^^^^^^^^ required by this bound in `Exception`
+help: consider restricting type parameter `T` with trait `Transform`
+   |
+14 | pub trait Transform<T: modules::traits::Transform<T>>:
+   |                      +++++++++++++++++++++++++++++++
+
+error[E0277]: the trait bound `T: Transform<T>` is not satisfied
+  --> src\modules\property.rs:10:5
+   |
+ 6 | #[derive(Debug, Serialize, Clone, Default)]
+   |          ----- in this derive macro expansion
+...
+10 |     pub cause: Exception<T>,
+   |     ^^^^^^^^^^^^^^^^^^^^^^^ the trait `Transform<T>` is not implemented for `T`
+   |
+note: required for `Exception<T>` to implement `Debug`
+  --> src\modules\exception.rs:9:10
+   |
+ 9 | #[derive(Debug, Clone, Serialize, Default)]
+   |          ^^^^^
+10 | pub struct Exception<T: Transform<T>> {
+   |                         ------------ unsatisfied trait bound introduced in this `derive` macro
+   = note: required for the cast from `&Exception<T>` to `&dyn Debug`
+help: consider restricting type parameter `T` with trait `Transform`
+   |
+ 7 | pub struct Property<T: modules::traits::Transform<T>> {
+   |                      +++++++++++++++++++++++++++++++
+
+error[E0277]: the trait bound `T: Transform<T>` is not satisfied
+    --> src\modules\property.rs:6:17
+     |
+   6 | #[derive(Debug, Serialize, Clone, Default)]
+     |                 ^^^^^^^^^ the trait `Transform<T>` is not implemented for `T`
+...
+  10 |     pub cause: Exception<T>,
+     |     --- required by a bound introduced by this call
+     |
+note: required for `Exception<T>` to implement `Serialize`
+    --> src\modules\exception.rs:9:24
+     |
+   9 | #[derive(Debug, Clone, Serialize, Default)]
+     |                        ^^^^^^^^^
+  10 | pub struct Exception<T: Transform<T>> {
+     |            ^^^^^^^^^^^^^------------^
+     |                         |
+     |                         unsatisfied trait bound introduced in this `derive` macro
+note: required by a bound in `exception::_::_serde::ser::SerializeStruct::serialize_field`
+    --> D:\RUST\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\serde_core-1.0.228\src\ser\mod.rs:1917:21
+     |
+1915 |     fn serialize_field<T>(&mut self, key: &'static str, value: &T) -> Result<(), Self::Error>
+     |        --------------- required by a bound in this associated function
+1916 |     where
+1917 |         T: ?Sized + Serialize;
+     |                     ^^^^^^^^^ required by this bound in `SerializeStruct::serialize_field`
+     = note: this error originates in the derive macro `Serialize` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0277]: the trait bound `T: Transform<T>` is not satisfied
+  --> src\modules\property.rs:10:5
+   |
+ 6 | #[derive(Debug, Serialize, Clone, Default)]
+   |                            ----- in this derive macro expansion
+...
+10 |     pub cause: Exception<T>,
+   |     ^^^^^^^^^^^^^^^^^^^^^^^ the trait `Transform<T>` is not implemented for `T`
+   |
+note: required by a bound in `Exception`
+  --> src\modules\exception.rs:10:25
+   |
+10 | pub struct Exception<T: Transform<T>> {
+   |                         ^^^^^^^^^^^^ required by this bound in `Exception`
+help: consider restricting type parameter `T` with trait `Transform`
+   |
+ 7 | pub struct Property<T: modules::traits::Transform<T>> {
+   |                      +++++++++++++++++++++++++++++++
+
+error[E0277]: the trait bound `T: Transform<T>` is not satisfied
+  --> src\modules\property.rs:10:5
+   |
+ 6 | #[derive(Debug, Serialize, Clone, Default)]
+   |                                   ------- in this derive macro expansion
+...
+10 |     pub cause: Exception<T>,
+   |     ^^^^^^^^^^^^^^^^^^^^^^^ the trait `Transform<T>` is not implemented for `T`
+   |
+note: required by a bound in `Exception`
+  --> src\modules\exception.rs:10:25
+   |
+10 | pub struct Exception<T: Transform<T>> {
+   |                         ^^^^^^^^^^^^ required by this bound in `Exception`
+help: consider restricting type parameter `T` with trait `Transform`
+   |
+ 7 | pub struct Property<T: modules::traits::Transform<T>> {
+   |                      +++++++++++++++++++++++++++++++
+
+error[E0277]: the trait bound `T: Transform<T>` is not satisfied
+  --> src\modules\traits.rs:22:9
+   |
+22 |         Exception {
+   |         ^^^^^^^^^ the trait `Transform<T>` is not implemented for `T`
+   |
+note: required by a bound in `Exception`
+  --> src\modules\exception.rs:10:25
+   |
+10 | pub struct Exception<T: Transform<T>> {
+   |                         ^^^^^^^^^^^^ required by this bound in `Exception`
+help: consider restricting type parameter `T` with trait `Transform`
+   |
+14 | pub trait Transform<T: modules::traits::Transform<T>>:
+   |                      +++++++++++++++++++++++++++++++
+
+error[E0308]: mismatched types
+  --> src\modules\traits.rs:24:24
+   |
+14 |   pub trait Transform<T>:
+   |   -                   - expected type parameter
+   |  _|
+   | |
+15 | |     ExceptionUtils<T> + 'static
+16 | |     + Error
+17 | |     + Serialize
+18 | |     + Any
+19 | |     + Clone
+   | |___________- found type parameter
+...
+24 |               mutex_ptr: self.clone(),
+   |                          ^^^^^^^^^^^^ expected type parameter `T`, found type parameter `Self`
+   |
+   = note: expected type parameter `T`
+              found type parameter `Self`
+   = note: a type parameter was expected, but a different one was found; you might be missing a type parameter or trait bound
+   = note: for more information, visit https://doc.rust-lang.org/book/ch10-02-traits.html#traits-as-parameters
+
+Some errors have detailed explanations: E0277, E0308.
+For more information about an error, try `rustc --explain E0277`.
+error: could not compile `exception` (lib) due to 8 previous errors
