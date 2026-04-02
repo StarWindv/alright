@@ -4,10 +4,11 @@ version.workspace = true
 edition.workspace = true
 license.workspace = true
 rust-version.workspace = true
+homepage.workspace = true
 
 [dependencies]
-alright = { path = "../alright" }
-alright-derive = { path = "../alright-derive"}
+alright = { path = "../alright", version = "0.0.2" }
+alright-derive = { path = "../alright-derive", version = "0.0.2"}
 serde = { version = "1.0.228", features = ["derive"] }
 
 [lib]
