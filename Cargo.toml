@@ -3,8 +3,9 @@ members = ["alright-derive", "alright", "alright-common"]
 resolver = "3"
 
 [workspace.package]
-version = "0.0.2"
+version = "0.1.1"
 edition = "2024"
 license = "GPL-3"
 rust-version = "1.94"
 homepage = "https://github.com/starwindv/alright"
+description = " A Safe-running, error-free, error-transmission without loss, 0 `Any` and 0 `unsafe block` error handling system\n - Aiming to provide a better development experience for the application layer."
