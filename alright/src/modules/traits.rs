@@ -1,7 +1,13 @@
-use crate::modules::exception::Exception;
-use crate::modules::property::Property;
 use serde::Serialize;
 use std::error::Error;
+
+use crate::{
+    modules::types::{
+        property::Property,
+        exception::BaseException
+    }
+};
+
 
 pub trait ExceptionUtils<T: Transform<T>> {
     fn get_property(&self) -> Box<Property<T>>;
@@ -22,13 +28,13 @@ where T: Transform<T>
     // Exception 在这里就是底层, 所以应该是 down
     // 而暂未实现的 up
     // 它代表的是向上, 也就是转型到高层抽象去
-    fn down(this: T) -> Exception<T> {
+    fn down(this: T) -> BaseException<T> {
         let mut inner = this.clone();
         inner.set_property(Box::new(Property {
             name: "".to_string(),
             ..Default::default()
         }));
-        Exception {
+        BaseException {
             // 这里必须是 this 或者不是 self 的名字,
             // 不然编译过不去(rust 不认识 Self 和 T 的关系),
             // 所以手动传递一下对象也是代价的一部分
@@ -37,7 +43,7 @@ where T: Transform<T>
         }
     }
 
-    fn up(this: Exception<T>) -> T {
+    fn up(this: BaseException<T>) -> T {
         let mut result = this.target_ptr;
         result.set_property(this.property.clone());
         result
