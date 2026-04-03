@@ -1,15 +1,15 @@
 [package]
 name = "alright-little_try"
-version.workspace = true
-edition.workspace = true
-license.workspace = true
-rust-version.workspace = true
-homepage.workspace = true
-description.workspace = true
+version = "0.1.2"
+edition = "2024"
+license = "GPL-3.0-only"
+rust-version = "1.94"
+homepage = "https://github.com/starwindv/alright"
+description = " A Safe-running, error-free, error-transmission without loss, 0 `Any` and 0 `unsafe block` error handling system\n - Aiming to provide a better development experience for the application layer."
 
 [dependencies]
-alright-common = { version = "0.1.1", path = "../alright-common"}
-alright-derive = { version = "0.1.1", path = "../alright-derive"}
-alright = { version = "0.1.1", path = "../alright"}
+alright-common = { version = "0.1.2" }
+alright-derive = { version = "0.1.2" }
+alright = { version = "0.1.2", path = "../alright"}
 rand = "0.10.0"
 serde = { version = "1.0.228", features = ["derive"] }
