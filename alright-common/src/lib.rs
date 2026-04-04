@@ -11,7 +11,7 @@ pub use alright::traits::{
 pub mod commonly_exceptions {
     pub use alright::commonly::{
         Exception,
-        JustException,
+        JustAException,
         GeneratorExit,
         KeyboardInterrupt,
         SystemExit,

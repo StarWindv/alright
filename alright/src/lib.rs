@@ -7,11 +7,11 @@ pub mod traits {
             template_display::TemplateDisplay,
             exception_utils::ExceptionUtils,
             transform::Transform,
-        },
-        commonly::{
-            PromiseErr,
-            AlrightBox,
-            AlrightError
+            commonly::{
+                PromiseErr,
+                AlrightBox,
+                AlrightError
+            }
         }
     };
 }
@@ -19,7 +19,7 @@ pub mod commonly {
     pub use crate::modules::commonly::{
         Exception,
         GeneratorExit,
-        JustException,
+        JustAException,
         KeyboardInterrupt,
         SystemExit,
         ArithmeticError,
@@ -70,7 +70,10 @@ pub use {
     modules::{
         types::{
             property::Property,
+            erased_property::ErasedProperty,
             exception::BaseException,
+            erased_exception::ErasedBaseException,
+            train::Train,
         },
     }
 };

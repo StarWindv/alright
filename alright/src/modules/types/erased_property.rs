@@ -1,26 +1,18 @@
-use crate::modules::{
-    traits::transform::Transform,
-    types::property::Property,
-    utils::{get_name, to_string_vec}
-};
-use std::any::type_name;
-
-use alright::commonly::KeyError;
+use crate::commonly::KeyError;
+use alright::modules::utils::to_string_vec;
+use alright::Property;
+use serde::Serialize;
 use serde_json::{Map, Value};
 
-impl<T: Transform > Default for Property<T> {
-    fn default() -> Self {
-        Self {
-            name: get_name(type_name::<Self>()),
-            context: Vec::new(),
-            cause: None,
-            other: Map::new(),
-        }
-    }
+#[derive(Debug, Serialize, Clone)]
+pub struct ErasedProperty {
+    pub name: String,
+    pub context: Vec<String>,
+    pub cause: Option<Box<Self>>,
+    pub other: Map<String, Value>,
 }
 
-
-impl<T: Transform + Default> Property<T> {
+impl ErasedProperty {
     pub fn record(&mut self, msg_list: &mut Vec<impl Into<String>>) {
         self.context.append(&mut to_string_vec(msg_list));
     }
@@ -28,7 +20,7 @@ impl<T: Transform + Default> Property<T> {
     pub fn add(&mut self, msg: impl Into<String>) {
         self.context.push(msg.into());
     }
-    
+
     pub fn context(&mut self, msg: impl Into<String>) {
         self.add(msg.into());
     }
@@ -40,10 +32,17 @@ impl<T: Transform + Default> Property<T> {
     ) -> Result<(), KeyError> {
         let string_key: String = key.into();
         if self.other.contains_key(&string_key.clone()) {
-            let mut err = KeyError { property: Box::new(Property::default()) };
-            err.property.context(format!("Duplicate Key: {string_key}"));
+            let mut kerr = KeyError {
+                property: Box::new(
+                    Property::default()
+                ) 
+            };
+            kerr.property.add(
+                format!("Duplicate Key: {string_key}"
+                )
+            );
             return Err(
-                err
+                kerr
             )
         }
         self.other

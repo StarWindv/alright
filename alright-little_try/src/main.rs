@@ -1,6 +1,6 @@
 use alright::{
     commonly::{
-        JustException,
+        JustAException,
         ValueError,
     },
     traits::AlrightBox
@@ -12,7 +12,7 @@ use alright_little_try::{
 
 
 fn test1() -> AlrightBox {
-    let je = JustException {
+    let je = JustAException {
         property: Box::new(Default::default()),
     };
     let ve = ValueError {
