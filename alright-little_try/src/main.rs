@@ -24,6 +24,8 @@ fn test1() -> AlrightBox {
     let ame = AnotherMyError {
         property: Box::new(Default::default()),
     };
+    let _cloned = ame.clone();
+    
     let num = rand::random_range(1..=4);
     println!("Case: {num}");
     if num == 1 {

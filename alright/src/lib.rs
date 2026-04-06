@@ -6,6 +6,7 @@ pub mod traits {
         traits::{
             template_display::TemplateDisplay,
             exception_utils::ExceptionUtils,
+            exception_utils::ErasedExceptionUtils,
             transform::Transform,
             commonly::{
                 PromiseErr,

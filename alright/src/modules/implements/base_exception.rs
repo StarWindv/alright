@@ -1,15 +1,13 @@
-use crate::{
-    modules::{
-        types::{
-            exception::BaseException,
-            property::Property,
-        },
-        traits::{
-            transform::Transform,
-            exception_utils::ExceptionUtils,
-            template_display::TemplateDisplay,
-        }
+use crate::modules::{
+    traits::{
+        exception_utils::ExceptionUtils,
+        template_display::TemplateDisplay,
+        transform::Transform,
     },
+    types::{
+        exception::BaseException,
+        property::Property,
+    }
 };
 use std::error::Error;
 use std::fmt::{
@@ -28,9 +26,7 @@ impl<T: Transform> Display for BaseException<T> {
 }
 
 impl<T: Transform + Clone> ExceptionUtils<T> for BaseException<T> {
-    fn get_property (&self) -> Box<Property<T>>
-    where Self: Transform
-    {
+    fn get_property (&self) -> Box<Property<T>> {
         self.property.clone()
     }
 
@@ -46,6 +42,7 @@ impl<T: Transform + Clone> ExceptionUtils<T> for BaseException<T> {
         self.target_ptr = ptr;
     }
 }
+
 
 impl<T: Transform + ExceptionUtils<T>> From<T> for BaseException<T> {
     fn from(value: T) -> Self {
