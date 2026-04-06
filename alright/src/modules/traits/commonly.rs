@@ -1,9 +1,10 @@
+use std::any::Any;
 use std::error::Error;
 use std::fmt::Debug;
 use alright::BaseException;
 use alright::traits::{ExceptionUtils, Transform};
 
-pub trait PromiseErr: Debug + Error {}
+pub trait PromiseErr: Debug + Error + Any {}
 
 impl<T: Transform> PromiseErr for BaseException<T> {}
 

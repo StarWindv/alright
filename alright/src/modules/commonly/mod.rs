@@ -13,8 +13,8 @@ use std::fmt::Debug;
 
 exceptions!(
     Exception,
-    JustAException,
-    GeneratorExit,
+    AbstractException,
+    JustAException, // If you don't know what to use, why not try this?
     KeyboardInterrupt,
     SystemExit,
     ArithmeticError,
@@ -57,7 +57,6 @@ exceptions!(
     UnicodeDecodeError,
     UnicodeEncodeError,
     UnicodeTranslateError,
-    ExceptionGroup,
     OSError,
 );
 

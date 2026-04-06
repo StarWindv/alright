@@ -4,9 +4,9 @@ exclude = ["alright-little_try"]
 resolver = "3"
 
 [workspace.package]
-version = "0.1.3"
+version = "0.1.4"
 edition = "2024"
 license = "GPL-3.0-only"
 rust-version = "1.89.0"
 homepage = "https://github.com/starwindv/alright"
-description = " A Safe-running, error-free, error-transmission without loss, 0 `Any` and 0 `unsafe block` error handling system\n - Aiming to provide a better development experience for the application layer."
+description = "A Safe-running, error-free, error-transmission without loss and 0 `unsafe block` error handling system\n - Aiming to provide a better development experience for the application layer."

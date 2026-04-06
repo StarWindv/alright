@@ -4,10 +4,10 @@ use crate::traits::ExceptionUtils;
 use crate::BaseException;
 use crate::Property;
 
-pub trait Transform: Clone + Debug + Serialize + 'static {
+pub trait Transform: Debug + 'static + Clone + Serialize {
     fn down(&self) -> BaseException<Self>
         where
-            Self: Transform + ExceptionUtils<Self>,
+            Self: Transform + ExceptionUtils<Self> + Clone,
     {
         let mut inner = self.clone();
         inner.set_property(Box::new(Property::<Self> {

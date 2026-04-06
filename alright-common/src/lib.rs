@@ -10,9 +10,9 @@ pub use alright::traits::{
 };
 pub mod commonly_exceptions {
     pub use alright::commonly::{
+        AbstractException,
         Exception,
         JustAException,
-        GeneratorExit,
         KeyboardInterrupt,
         SystemExit,
         ArithmeticError,
@@ -55,7 +55,6 @@ pub mod commonly_exceptions {
         UnicodeDecodeError,
         UnicodeEncodeError,
         UnicodeTranslateError,
-        ExceptionGroup,
         OSError,
     };
 }
